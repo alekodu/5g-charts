@@ -41,3 +41,6 @@ ue:
 amfif:
   - ip: "${AMF_ADDR}"
     port: 38412
+
+logs:
+  level: {{ .Values.config.logs.level }}
