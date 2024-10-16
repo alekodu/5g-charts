@@ -1,6 +1,74 @@
-upf:
-  enabled:false
+# Disable scp
+scp:
+  enabled: false
 
+# set scp configuration in the other functions:
+smf:
+  config:
+    sbi:
+      client:
+        nrf:
+          uri: http://open5gs-nrf-sbi:7777
+    upf:
+      pfcp:
+        hostname: "192.168.82.4"
+amf:
+  commonAnnotations:
+    loxilb.io/liveness: "yes"
+    loxilb.io/lbmode: "fullnat"
+    loxilb.io/staticIP: "192.168.82.252"
+  services:
+    ngap:
+      type: LoadBalancer
+      externalTrafficPolicy: Local
+      loadBalancerClass: loxilb.io/loxilb
+  config:
+    sbi:
+      client:
+        nrf:
+          uri: http://open5gs-nrf-sbi:7777
+ausf:
+  config:
+    sbi:
+      client:
+        nrf:
+          uri: http://open5gs-nrf-sbi:7777
+bsf:
+  config:
+    sbi:
+      client:
+        nrf:
+          uri: http://open5gs-nrf-sbi:7777
+nssf:
+  config:
+    sbi:
+      client:
+        nrf:
+          uri: http://open5gs-nrf-sbi:7777
+pcf:
+  config:
+    sbi:
+      client:
+        nrf:
+          uri: http://open5gs-nrf-sbi:7777
+udm:
+  config:
+    sbi:
+      client:
+        nrf:
+          uri: http://open5gs-nrf-sbi:7777
+udr:
+  config:
+    sbi:
+      client:
+        nrf:
+          uri: http://open5gs-nrf-sbi:7777
+
+# Disable upf
+upf:
+  enabled: false
+
+# Disable 4G functions
 hss:
   enabled: false
 
@@ -21,7 +89,9 @@ sgwc:
 sgwu:
   enabled: false
 
+# Disable webui
 webui:
+  enabled: false
   ingress:
     enabled: false
 

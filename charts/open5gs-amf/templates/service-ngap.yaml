@@ -36,6 +36,9 @@ spec:
   {{- if or (eq .Values.services.ngap.type "LoadBalancer") (eq .Values.services.ngap.type "NodePort") }}
   externalTrafficPolicy: {{ .Values.services.ngap.externalTrafficPolicy | quote }}
   {{- end }}
+  {{- if (and (eq .Values.services.ngap.type "LoadBalancer") (not (empty .Values.services.ngap.loadBalancerClass))) }}
+  loadBalancerClass: {{ .Values.services.ngap.loadBalancerClass | quote }}
+  {{- end }}
   ports:
     - name: ngap
       port: {{ .Values.services.ngap.ports.ngap }}
