@@ -1,17 +1,22 @@
 # Disable scp
 scp:
   enabled: false
-
 # set scp configuration in the other functions:
 smf:
   config:
     sbi:
       client:
+        scp:
+          enabled: false
+          uri: ""
         nrf:
+          enabled: true
           uri: http://open5gs-nrf-sbi:7777
     upf:
       pfcp:
         hostname: "192.168.82.4"
+    pcrf:
+      enabled: false
 amf:
   commonAnnotations:
     loxilb.io/liveness: "yes"
@@ -25,76 +30,91 @@ amf:
   config:
     sbi:
       client:
+        scp:
+          enabled: false
+          uri: ""
         nrf:
+          enabled: true
           uri: http://open5gs-nrf-sbi:7777
 ausf:
   config:
     sbi:
       client:
+        scp:
+          enabled: false
+          uri: ""
         nrf:
+          enabled: true
           uri: http://open5gs-nrf-sbi:7777
 bsf:
   config:
     sbi:
       client:
+        scp:
+          enabled: false
+          uri: ""
         nrf:
+          enabled: true
           uri: http://open5gs-nrf-sbi:7777
 nssf:
   config:
     sbi:
       client:
+        scp:
+          enabled: false
+          uri: ""
         nrf:
+          enabled: true
           uri: http://open5gs-nrf-sbi:7777
 pcf:
   config:
     sbi:
       client:
+        scp:
+          enabled: false
+          uri: ""
         nrf:
+          enabled: true
           uri: http://open5gs-nrf-sbi:7777
 udm:
   config:
     sbi:
       client:
+        scp:
+          enabled: false
+          uri: ""
         nrf:
+          enabled: true
           uri: http://open5gs-nrf-sbi:7777
 udr:
   config:
     sbi:
       client:
+        scp:
+          enabled: false
+          uri: ""
         nrf:
+          enabled: true
           uri: http://open5gs-nrf-sbi:7777
-
 # Disable upf
 upf:
   enabled: false
-
 # Disable 4G functions
 hss:
   enabled: false
-
 mme:
   enabled: false
-
 pcrf:
   enabled: false
-
-smf:
-  config:
-    pcrf:
-      enabled: false
-
 sgwc:
   enabled: false
-
 sgwu:
   enabled: false
-
 # Disable webui
 webui:
   enabled: false
   ingress:
     enabled: false
-
 populate:
   enabled: true
   initCommands:
