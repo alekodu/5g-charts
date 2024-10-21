@@ -36,6 +36,9 @@ spec:
   {{- if or (eq .Values.services.pfcp.type "LoadBalancer") (eq .Values.services.pfcp.type "NodePort") }}
   externalTrafficPolicy: {{ .Values.services.pfcp.externalTrafficPolicy | quote }}
   {{- end }}
+  {{- if (and (eq .Values.services.pfcp.type "LoadBalancer") (not (empty .Values.services.pfcp.loadBalancerClass))) }}
+  loadBalancerClass: {{ .Values.services.pfcp.loadBalancerClass | quote }}
+  {{- end }}
   ports:
     - name: pfcp
       port: {{ .Values.services.pfcp.ports.pfcp }}
