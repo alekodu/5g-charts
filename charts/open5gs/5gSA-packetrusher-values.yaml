@@ -3,6 +3,15 @@ scp:
   enabled: false
 # set scp configuration in the other functions:
 smf:
+  commonAnnotations:
+    loxilb.io/liveness: "yes"
+    loxilb.io/lbmode: "fullnat"
+    loxilb.io/staticIP: "192.168.82.253"
+  services:
+    pfcp:
+      type: LoadBalancer
+      externalTrafficPolicy: Local
+      loadBalancerClass: loxilb.io/loxilb
   config:
     sbi:
       client:
