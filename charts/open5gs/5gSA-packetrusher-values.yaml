@@ -6,7 +6,7 @@ smf:
   commonAnnotations:
     loxilb.io/liveness: "yes"
     loxilb.io/lbmode: "fullnat"
-    loxilb.io/staticIP: "192.168.82.253"
+    loxilb.io/staticIP: "192.168.82.251"
   services:
     pfcp:
       type: LoadBalancer
