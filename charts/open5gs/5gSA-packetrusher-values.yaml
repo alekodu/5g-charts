@@ -23,7 +23,7 @@ smf:
           uri: http://open5gs-nrf-sbi:7777
     upf:
       pfcp:
-        hostname: "192.168.82.4"
+        hostname: "192.168.82.251"
     pcrf:
       enabled: false
 amf:
