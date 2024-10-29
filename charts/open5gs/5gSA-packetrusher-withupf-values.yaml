@@ -1,0 +1,116 @@
+# Disable scp
+scp:
+  enabled: false
+# set scp configuration in the other functions:
+smf:
+  services:
+  config:
+    sbi:
+      client:
+        scp:
+          enabled: false
+          uri: ""
+        nrf:
+          enabled: true
+          uri: http://open5gs-nrf-sbi:7777
+    pcrf:
+      enabled: false
+amf:
+  commonAnnotations:
+    loxilb.io/liveness: "yes"
+    loxilb.io/lbmode: "fullnat"
+    loxilb.io/staticIP: "192.168.82.252"
+  services:
+    ngap:
+      type: LoadBalancer
+      externalTrafficPolicy: Local
+      loadBalancerClass: loxilb.io/loxilb
+  config:
+    sbi:
+      client:
+        scp:
+          enabled: false
+          uri: ""
+        nrf:
+          enabled: true
+          uri: http://open5gs-nrf-sbi:7777
+ausf:
+  config:
+    sbi:
+      client:
+        scp:
+          enabled: false
+          uri: ""
+        nrf:
+          enabled: true
+          uri: http://open5gs-nrf-sbi:7777
+bsf:
+  config:
+    sbi:
+      client:
+        scp:
+          enabled: false
+          uri: ""
+        nrf:
+          enabled: true
+          uri: http://open5gs-nrf-sbi:7777
+nssf:
+  config:
+    sbi:
+      client:
+        scp:
+          enabled: false
+          uri: ""
+        nrf:
+          enabled: true
+          uri: http://open5gs-nrf-sbi:7777
+pcf:
+  config:
+    sbi:
+      client:
+        scp:
+          enabled: false
+          uri: ""
+        nrf:
+          enabled: true
+          uri: http://open5gs-nrf-sbi:7777
+udm:
+  config:
+    sbi:
+      client:
+        scp:
+          enabled: false
+          uri: ""
+        nrf:
+          enabled: true
+          uri: http://open5gs-nrf-sbi:7777
+udr:
+  config:
+    sbi:
+      client:
+        scp:
+          enabled: false
+          uri: ""
+        nrf:
+          enabled: true
+          uri: http://open5gs-nrf-sbi:7777
+# Disable 4G functions
+hss:
+  enabled: false
+mme:
+  enabled: false
+pcrf:
+  enabled: false
+sgwc:
+  enabled: false
+sgwu:
+  enabled: false
+# Disable webui
+webui:
+  enabled: true
+  ingress:
+    enabled: false
+populate:
+  enabled: true
+  initCommands:
+  - for ue in {1..9}; do open5gs-dbctl add_ue_with_slice "99970000000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
