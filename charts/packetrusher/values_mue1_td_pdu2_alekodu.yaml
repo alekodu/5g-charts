@@ -110,7 +110,7 @@ replicaCount: 1
 command: []
 ## @param args Override default container args (useful when using custom images)
 ##
-args: ["gnb"]
+args: ["multi-ue", "-n", "1", "-t", "-d", "--nPdu", "2"]
 ## @param updateStrategy.type Update strategy - only really applicable for deployments with RWO PVs attached
 ## If replicas = 1, an update can get "stuck", as the previous pod remains attached to the
 ## PV, and the "incoming" pod can never start. Changing the strategy to "Recreate" will
