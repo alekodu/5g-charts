@@ -46,6 +46,15 @@ spec:
       {{- else if eq .Values.services.gtpu.type "ClusterIP" }}
       nodePort: null
       {{- end }}
+    - name: gtpu2
+      port: {{ .Values.services.gtpu.ports.gtpu + 1}}
+      protocol: UDP
+      targetPort: gtpu
+      {{- if and (or (eq .Values.services.gtpu.type "NodePort") (eq .Values.services.gtpu.type "LoadBalancer")) (not (empty .Values.services.gtpu.nodePorts.gtpu)) }}
+      nodePort: {{ .Values.services.gtpu.nodePorts.gtpu + 1}}
+      {{- else if eq .Values.services.gtpu.type "ClusterIP" }}
+      nodePort: null
+      {{- end }}
     {{- if .Values.services.gtpu.extraPorts }}
     {{- include "common.tplvalues.render" (dict "value" .Values.services.gtpu.extraPorts "context" $) | nindent 4 }}
     {{- end }}
