@@ -113,5 +113,6 @@ populate:
   initCommands:
   - for ue in {1..9}; do open5gs-dbctl add_ue_with_slice "99970000000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
     for ue in {10..99}; do open5gs-dbctl add_ue_with_slice "9997000000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
-    for ue in {100..999}; do open5gs-dbctl add_ue_with_slice "9997000000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
-    for ue in {1000..9999}; do open5gs-dbctl add_ue_with_slice "9997000000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
+    for ue in {100..999}; do open5gs-dbctl add_ue_with_slice "999700000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
+    for ue in {1000..9999}; do open5gs-dbctl add_ue_with_slice "99970000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
+    open5gs-dbctl add_ue_with_slice "999700000010000" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff
