@@ -3,7 +3,15 @@ scp:
   enabled: false
 # set scp configuration in the other functions:
 smf:
-  services:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: node
+            operator: In
+            values:
+            - smf
   config:
     sbi:
       client:
@@ -16,6 +24,15 @@ smf:
     pcrf:
       enabled: false
 amf:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: node
+            operator: In
+            values:
+            - amf
   config:
     sbi:
       client:
@@ -26,6 +43,15 @@ amf:
           enabled: true
           uri: http://open5gs-nrf-sbi:7777
 ausf:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: node
+            operator: In
+            values:
+            - other
   config:
     sbi:
       client:
@@ -36,6 +62,15 @@ ausf:
           enabled: true
           uri: http://open5gs-nrf-sbi:7777
 bsf:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: node
+            operator: In
+            values:
+            - other
   config:
     sbi:
       client:
@@ -46,6 +81,15 @@ bsf:
           enabled: true
           uri: http://open5gs-nrf-sbi:7777
 nssf:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: node
+            operator: In
+            values:
+            - other
   config:
     sbi:
       client:
@@ -56,6 +100,15 @@ nssf:
           enabled: true
           uri: http://open5gs-nrf-sbi:7777
 pcf:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: node
+            operator: In
+            values:
+            - other
   config:
     sbi:
       client:
@@ -66,6 +119,15 @@ pcf:
           enabled: true
           uri: http://open5gs-nrf-sbi:7777
 udm:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: node
+            operator: In
+            values:
+            - other
   config:
     sbi:
       client:
@@ -76,6 +138,15 @@ udm:
           enabled: true
           uri: http://open5gs-nrf-sbi:7777
 udr:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: node
+            operator: In
+            values:
+            - other
   config:
     sbi:
       client:
@@ -85,7 +156,26 @@ udr:
         nrf:
           enabled: true
           uri: http://open5gs-nrf-sbi:7777
+nrf:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: node
+            operator: In
+            values:
+            - other
 upf:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: node
+            operator: In
+            values:
+            - upf
   podAnnotations:
     sidecar.istio.io/inject: "false"
 # Disable 4G functions
@@ -106,10 +196,39 @@ webui:
     sidecar.istio.io/inject: "false"
   ingress:
     enabled: false
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: In
+            values:
+            - master
+mongodb:
+  enabled: true
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: In
+            values:
+            - master
 populate:
   enabled: true
-  podAnnotations:
-    sidecar.istio.io/inject: "false"
+    #  podAnnotations:
+    #sidecar.istio.io/inject: "false"
+    #affinity:
+    #nodeAffinity:
+    #  requiredDuringSchedulingIgnoredDuringExecution:
+    #    nodeSelectorTerms:
+    #    - matchExpressions:
+    #      - key: kubernetes.io/hostname
+    #        operator: In
+    #        values:
+    #        - master
   initCommands:
   - for ue in {1..9}; do open5gs-dbctl add_ue_with_slice "99970000000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
   - for ue in {10..99}; do open5gs-dbctl add_ue_with_slice "9997000000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
