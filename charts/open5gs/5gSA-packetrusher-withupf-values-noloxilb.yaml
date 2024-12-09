@@ -218,6 +218,7 @@ mongodb:
             - master
 populate:
   enabled: true
+    # TODO: The following lines do not get applied, for some reason... investigate why!
     #  podAnnotations:
     #sidecar.istio.io/inject: "false"
     #affinity:
