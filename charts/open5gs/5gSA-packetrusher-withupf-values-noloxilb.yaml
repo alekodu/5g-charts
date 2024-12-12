@@ -5,8 +5,11 @@ scp:
 smf:
   resources:
     requests:
-      cpu: "1"
-      memory: 500Mi
+      cpu: 1000m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 512Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -30,8 +33,11 @@ smf:
 amf:
   resources:
     requests:
-      cpu: "1"
-      memory: 500Mi
+      cpu: 1000m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 512Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -53,8 +59,11 @@ amf:
 ausf:
   resources:
     requests:
-      cpu: "1"
-      memory: 500Mi
+      cpu: 1000m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 512Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -76,8 +85,11 @@ ausf:
 bsf:
   resources:
     requests:
-      cpu: "1"
-      memory: 500Mi
+      cpu: 1000m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 512Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -99,8 +111,11 @@ bsf:
 nssf:
   resources:
     requests:
-      cpu: "1"
-      memory: 500Mi
+      cpu: 1000m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 512Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -122,8 +137,11 @@ nssf:
 pcf:
   resources:
     requests:
-      cpu: "1"
-      memory: 500Mi
+      cpu: 1000m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 512Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -145,8 +163,11 @@ pcf:
 udm:
   resources:
     requests:
-      cpu: "1"
-      memory: 500Mi
+      cpu: 1000m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 512Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -168,8 +189,11 @@ udm:
 udr:
   resources:
     requests:
-      cpu: "1"
-      memory: 500Mi
+      cpu: 1000m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 512Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -191,8 +215,11 @@ udr:
 nrf:
   resources:
     requests:
-      cpu: "1"
-      memory: 500Mi
+      cpu: 1000m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 512Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -205,8 +232,11 @@ nrf:
 upf:
   resources:
     requests:
-      cpu: "16"
+      cpu: 16000m
       memory: 32Gi
+    limits:
+      cpu: 4000m
+      memory: 8Gi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:

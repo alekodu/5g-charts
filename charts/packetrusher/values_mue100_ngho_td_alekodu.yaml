@@ -234,8 +234,12 @@ nodeSelector: {}
 ## @param resources.limits The resources limits for the init container
 ##
 resources:
-  requests: {}
-  limits: {}
+  requests:
+    cpu: 1000m
+    memory: 512Mi
+  limits:
+    cpu: 1000m
+    memory: 512Mi
 ## Configure Pods Security Context
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
 ## @param podSecurityContext.enabled Enable open5gs-upf pods' Security Context
