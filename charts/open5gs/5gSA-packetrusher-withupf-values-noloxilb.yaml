@@ -3,6 +3,10 @@ scp:
   enabled: false
 # set scp configuration in the other functions:
 smf:
+  resources:
+    requests:
+      cpu: "1"
+      memory: 500Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -24,6 +28,10 @@ smf:
     pcrf:
       enabled: false
 amf:
+  resources:
+    requests:
+      cpu: "1"
+      memory: 500Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -43,6 +51,10 @@ amf:
           enabled: true
           uri: http://open5gs-nrf-sbi:7777
 ausf:
+  resources:
+    requests:
+      cpu: "1"
+      memory: 500Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -62,6 +74,10 @@ ausf:
           enabled: true
           uri: http://open5gs-nrf-sbi:7777
 bsf:
+  resources:
+    requests:
+      cpu: "1"
+      memory: 500Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -81,6 +97,10 @@ bsf:
           enabled: true
           uri: http://open5gs-nrf-sbi:7777
 nssf:
+  resources:
+    requests:
+      cpu: "1"
+      memory: 500Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -100,6 +120,10 @@ nssf:
           enabled: true
           uri: http://open5gs-nrf-sbi:7777
 pcf:
+  resources:
+    requests:
+      cpu: "1"
+      memory: 500Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -119,6 +143,10 @@ pcf:
           enabled: true
           uri: http://open5gs-nrf-sbi:7777
 udm:
+  resources:
+    requests:
+      cpu: "1"
+      memory: 500Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -138,6 +166,10 @@ udm:
           enabled: true
           uri: http://open5gs-nrf-sbi:7777
 udr:
+  resources:
+    requests:
+      cpu: "1"
+      memory: 500Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -157,6 +189,10 @@ udr:
           enabled: true
           uri: http://open5gs-nrf-sbi:7777
 nrf:
+  resources:
+    requests:
+      cpu: "1"
+      memory: 500Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -167,6 +203,10 @@ nrf:
             values:
             - other
 upf:
+  resources:
+    requests:
+      cpu: "16"
+      memory: 32Gi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
