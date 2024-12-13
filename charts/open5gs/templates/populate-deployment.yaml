@@ -21,8 +21,8 @@ spec:
       labels: {{- include "common.labels.standard" . | nindent 8 }}
         app.kubernetes.io/component: populate
       annotations:
-        {{- if .Values.podAnnotations }}
-        {{- include "common.tplvalues.render" (dict "value" .Values.podAnnotations "context" $) | nindent 8 }}
+        {{- if .Values.populate.podAnnotations }}
+        {{- include "common.tplvalues.render" (dict "value" .Values.populate.podAnnotations "context" $) | nindent 8 }}
         {{- end }}
     spec:
       {{- if .Values.affinity }}
