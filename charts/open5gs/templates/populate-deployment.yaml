@@ -21,19 +21,17 @@ spec:
       labels: {{- include "common.labels.standard" . | nindent 8 }}
         app.kubernetes.io/component: populate
       annotations:
-        {{- if .Values.populate.podAnnotations }}
-        {{- include "common.tplvalues.render" (dict "value" .Values.populate.podAnnotations "context" $) | nindent 8 }}
-        {{- end }}
+        sidecar.istio.io/inject: "false"
     spec:
-      {{- if .Values.affinity }}
-      affinity: {{- include "common.tplvalues.render" (dict "value" .Values.affinity "context" $) | nindent 8 }}
-      {{- else }}
       affinity:
-        podAffinity: {{- include "common.affinities.pods" (dict "type" .Values.podAffinityPreset "context" $) | nindent 10 }}
-        podAntiAffinity: {{- include "common.affinities.pods" (dict "type" .Values.podAntiAffinityPreset "context" $) | nindent 10 }}
-        nodeAffinity: {{- include "common.affinities.nodes" (dict "type" .Values.nodeAffinityPreset.type "key" .Values.nodeAffinityPreset.key "values" .Values.nodeAffinityPreset.values) | nindent 10 }}
-      {{- end }}
-      {{- include "open5gs.populate.imagePullSecrets" . | nindent 6 }}
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                - master
       initContainers:
       - name: init
         image: {{ template "open5gs.populate.image" . }}
