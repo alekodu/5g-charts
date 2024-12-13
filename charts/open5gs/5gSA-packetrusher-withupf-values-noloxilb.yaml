@@ -288,6 +288,7 @@ mongodb:
             - master
 populate:
   enabled: true
+  # NOTE: This configuration does not take effect on populate 
   #podAnnotations:
     #sidecar.istio.io/inject: "false"
   #affinity:
