@@ -18,7 +18,7 @@ scp:
           - key: node
             operator: In
             values:
-            - other
+            - scp
 # set scp configuration in the other functions:
 smf:
   podAnnotations:
