@@ -34,10 +34,10 @@ amf:
   resources:
     requests:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1024Mi
     limits:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1024Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:

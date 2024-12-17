@@ -1,6 +1,24 @@
 # Disable scp
 scp:
-  enabled: false
+  enabled: true
+  podAnnotations:
+    sidecar.istio.io/inject: "false"
+  resources:
+    requests:
+      cpu: 1000m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 512Mi
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: node
+            operator: In
+            values:
+            - other
 # set scp configuration in the other functions:
 smf:
   podAnnotations:
@@ -25,11 +43,7 @@ smf:
     sbi:
       client:
         scp:
-          enabled: false
-          uri: ""
-        nrf:
           enabled: true
-          uri: http://open5gs-nrf-sbi:7777
     pcrf:
       enabled: false
 amf:
@@ -55,11 +69,7 @@ amf:
     sbi:
       client:
         scp:
-          enabled: false
-          uri: ""
-        nrf:
           enabled: true
-          uri: http://open5gs-nrf-sbi:7777
 ausf:
   podAnnotations:
     sidecar.istio.io/inject: "false"
@@ -83,11 +93,7 @@ ausf:
     sbi:
       client:
         scp:
-          enabled: false
-          uri: ""
-        nrf:
           enabled: true
-          uri: http://open5gs-nrf-sbi:7777
 bsf:
   podAnnotations:
     sidecar.istio.io/inject: "false"
@@ -111,11 +117,7 @@ bsf:
     sbi:
       client:
         scp:
-          enabled: false
-          uri: ""
-        nrf:
           enabled: true
-          uri: http://open5gs-nrf-sbi:7777
 nssf:
   podAnnotations:
     sidecar.istio.io/inject: "false"
@@ -139,11 +141,7 @@ nssf:
     sbi:
       client:
         scp:
-          enabled: false
-          uri: ""
-        nrf:
           enabled: true
-          uri: http://open5gs-nrf-sbi:7777
 pcf:
   podAnnotations:
     sidecar.istio.io/inject: "false"
@@ -167,11 +165,7 @@ pcf:
     sbi:
       client:
         scp:
-          enabled: false
-          uri: ""
-        nrf:
           enabled: true
-          uri: http://open5gs-nrf-sbi:7777
 udm:
   podAnnotations:
     sidecar.istio.io/inject: "false"
@@ -195,11 +189,7 @@ udm:
     sbi:
       client:
         scp:
-          enabled: false
-          uri: ""
-        nrf:
           enabled: true
-          uri: http://open5gs-nrf-sbi:7777
 udr:
   podAnnotations:
     sidecar.istio.io/inject: "false"
@@ -223,11 +213,7 @@ udr:
     sbi:
       client:
         scp:
-          enabled: false
-          uri: ""
-        nrf:
           enabled: true
-          uri: http://open5gs-nrf-sbi:7777
 nrf:
   podAnnotations:
     sidecar.istio.io/inject: "false"
