@@ -1,0 +1,308 @@
+# Disable scp
+scp:
+  enabled: false
+# set scp configuration in the other functions:
+smf:
+  resources:
+    requests:
+      cpu: 1000m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 512Mi
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: node
+            operator: In
+            values:
+            - amf
+  config:
+    sbi:
+      client:
+        scp:
+          enabled: false
+          uri: ""
+        nrf:
+          enabled: true
+          uri: http://open5gs-nrf-sbi:7777
+    pcrf:
+      enabled: false
+amf:
+  resources:
+    requests:
+      cpu: 1000m
+      memory: 1024Mi
+    limits:
+      cpu: 1000m
+      memory: 1024Mi
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: node
+            operator: In
+            values:
+            - amf
+  config:
+    sbi:
+      client:
+        scp:
+          enabled: false
+          uri: ""
+        nrf:
+          enabled: true
+          uri: http://open5gs-nrf-sbi:7777
+ausf:
+  resources:
+    requests:
+      cpu: 1000m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 512Mi
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: node
+            operator: In
+            values:
+            - other
+  config:
+    sbi:
+      client:
+        scp:
+          enabled: false
+          uri: ""
+        nrf:
+          enabled: true
+          uri: http://open5gs-nrf-sbi:7777
+bsf:
+  resources:
+    requests:
+      cpu: 1000m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 512Mi
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: node
+            operator: In
+            values:
+            - other
+  config:
+    sbi:
+      client:
+        scp:
+          enabled: false
+          uri: ""
+        nrf:
+          enabled: true
+          uri: http://open5gs-nrf-sbi:7777
+nssf:
+  resources:
+    requests:
+      cpu: 1000m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 512Mi
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: node
+            operator: In
+            values:
+            - other
+  config:
+    sbi:
+      client:
+        scp:
+          enabled: false
+          uri: ""
+        nrf:
+          enabled: true
+          uri: http://open5gs-nrf-sbi:7777
+pcf:
+  resources:
+    requests:
+      cpu: 1000m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 512Mi
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: node
+            operator: In
+            values:
+            - other
+  config:
+    sbi:
+      client:
+        scp:
+          enabled: false
+          uri: ""
+        nrf:
+          enabled: true
+          uri: http://open5gs-nrf-sbi:7777
+udm:
+  resources:
+    requests:
+      cpu: 1000m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 512Mi
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: node
+            operator: In
+            values:
+            - other
+  config:
+    sbi:
+      client:
+        scp:
+          enabled: false
+          uri: ""
+        nrf:
+          enabled: true
+          uri: http://open5gs-nrf-sbi:7777
+udr:
+  resources:
+    requests:
+      cpu: 1000m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 512Mi
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: node
+            operator: In
+            values:
+            - other
+  config:
+    sbi:
+      client:
+        scp:
+          enabled: false
+          uri: ""
+        nrf:
+          enabled: true
+          uri: http://open5gs-nrf-sbi:7777
+nrf:
+  resources:
+    requests:
+      cpu: 1000m
+      memory: 512Mi
+    limits:
+      cpu: 1000m
+      memory: 512Mi
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: node
+            operator: In
+            values:
+            - other
+upf:
+  resources:
+    requests:
+      cpu: 4000m
+      memory: 8Gi
+    limits:
+      cpu: 4000m
+      memory: 8Gi
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: node
+            operator: In
+            values:
+            - upf
+  podAnnotations:
+    sidecar.istio.io/inject: "false"
+# Disable 4G functions
+hss:
+  enabled: false
+mme:
+  enabled: false
+pcrf:
+  enabled: false
+sgwc:
+  enabled: false
+sgwu:
+  enabled: false
+# Disable webui
+webui:
+  enabled: true
+  podAnnotations:
+    sidecar.istio.io/inject: "false"
+  ingress:
+    enabled: false
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: In
+            values:
+            - master
+mongodb:
+  enabled: true
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: In
+            values:
+            - master
+populate:
+  enabled: true
+  # NOTE: This configuration does not take effect on populate 
+  #podAnnotations:
+    #sidecar.istio.io/inject: "false"
+  #affinity:
+    #nodeAffinity:
+    #  requiredDuringSchedulingIgnoredDuringExecution:
+    #    nodeSelectorTerms:
+    #    - matchExpressions:
+    #      - key: kubernetes.io/hostname
+    #        operator: In
+    #        values:
+    #        - master
+  initCommands:
+  - for ue in {1..9}; do open5gs-dbctl add_ue_with_slice "99970000000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
+  - for ue in {10..99}; do open5gs-dbctl add_ue_with_slice "9997000000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
+  - for ue in {100..999}; do open5gs-dbctl add_ue_with_slice "999700000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
+  - for ue in {1000..9999}; do open5gs-dbctl add_ue_with_slice "99970000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
+  - open5gs-dbctl add_ue_with_slice "999700000010000" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff
