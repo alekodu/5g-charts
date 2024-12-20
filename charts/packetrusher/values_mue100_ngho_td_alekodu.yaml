@@ -327,7 +327,8 @@ lifecycleHooks: {}
 ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
 ##
 podAnnotations: {
-  sidecar.istio.io/inject: "false"
+  istio.io/dataplane-mode: none
+  #sidecar.istio.io/inject: "false"
 }
 ## @param podLabels Add additional labels to the pod (evaluated as a template)
 ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
