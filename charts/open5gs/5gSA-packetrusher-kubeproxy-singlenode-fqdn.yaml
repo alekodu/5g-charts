@@ -3,13 +3,15 @@ scp:
   enabled: false
 # set scp configuration in the other functions:
 smf:
+  podAnnotations:
+    sidecar.istio.io/inject: "false"
   resources:
     requests:
-      cpu: 1000m
-      memory: 512Mi
+      cpu: 25
+      memory: 50Gi
     limits:
-      cpu: 1000m
-      memory: 512Mi
+      cpu: 25
+      memory: 50Gi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -18,27 +20,32 @@ smf:
           - key: node
             operator: In
             values:
-            - amf
+            - smf
   config:
-    logLevel: fatal
+    logLevel: error
     sbi:
+      server:
+        port: 80
+        advertise: open5gs-smf-sbi
       client:
         scp:
           enabled: false
           uri: ""
         nrf:
           enabled: true
-          uri: http://open5gs-nrf-sbi:7777
+          uri: http://open5gs-nrf-sbi:80
     pcrf:
       enabled: false
 amf:
+  podAnnotations:
+    sidecar.istio.io/inject: "false"
   resources:
     requests:
-      cpu: 1000m
-      memory: 1024Mi
+      cpu: 25
+      memory: 50Gi
     limits:
-      cpu: 1000m
-      memory: 1024Mi
+      cpu: 25
+      memory: 50Gi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -49,23 +56,27 @@ amf:
             values:
             - amf
   config:
-    logLevel: fatal
+    logLevel: error
     sbi:
+      server:
+        advertise: open5gs-amf-sbi
       client:
         scp:
           enabled: false
           uri: ""
         nrf:
           enabled: true
-          uri: http://open5gs-nrf-sbi:7777
+          uri: http://open5gs-nrf-sbi:80
 ausf:
+  podAnnotations:
+    sidecar.istio.io/inject: "false"
   resources:
     requests:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1000Mi
     limits:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1000Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -76,23 +87,27 @@ ausf:
             values:
             - other
   config:
-    logLevel: fatal
+    logLevel: error
     sbi:
+      server:
+        advertise: open5gs-ausf-sbi
       client:
         scp:
           enabled: false
           uri: ""
         nrf:
           enabled: true
-          uri: http://open5gs-nrf-sbi:7777
+          uri: http://open5gs-nrf-sbi:50
 bsf:
+  podAnnotations:
+    sidecar.istio.io/inject: "false"
   resources:
     requests:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1000Mi
     limits:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1000Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -103,23 +118,27 @@ bsf:
             values:
             - other
   config:
-    logLevel: fatal
+    logLevel: error
     sbi:
+      server:
+        advertise: open5gs-bsf-sbi
       client:
         scp:
           enabled: false
           uri: ""
         nrf:
           enabled: true
-          uri: http://open5gs-nrf-sbi:7777
+          uri: http://open5gs-nrf-sbi:80
 nssf:
+  podAnnotations:
+    sidecar.istio.io/inject: "false"
   resources:
     requests:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1000Mi
     limits:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1000Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -130,23 +149,27 @@ nssf:
             values:
             - other
   config:
-    logLevel: fatal
+    logLevel: error
     sbi:
+      server:
+        advertise: open5gs-nssf-sbi
       client:
         scp:
           enabled: false
           uri: ""
         nrf:
           enabled: true
-          uri: http://open5gs-nrf-sbi:7777
+          uri: http://open5gs-nrf-sbi:80
 pcf:
+  podAnnotations:
+    sidecar.istio.io/inject: "false"
   resources:
     requests:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1000Mi
     limits:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1000Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -157,23 +180,27 @@ pcf:
             values:
             - other
   config:
-    logLevel: fatal
+    logLevel: error
     sbi:
+      server:
+        advertise: open5gs-pcf-sbi
       client:
         scp:
           enabled: false
           uri: ""
         nrf:
           enabled: true
-          uri: http://open5gs-nrf-sbi:7777
+          uri: http://open5gs-nrf-sbi:80
 udm:
+  podAnnotations:
+    sidecar.istio.io/inject: "false"
   resources:
     requests:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1000Mi
     limits:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1000Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -184,23 +211,27 @@ udm:
             values:
             - other
   config:
-    logLevel: fatal
+    logLevel: error
     sbi:
+      server:
+        advertise: open5gs-udm-sbi
       client:
         scp:
           enabled: false
           uri: ""
         nrf:
           enabled: true
-          uri: http://open5gs-nrf-sbi:7777
+          uri: http://open5gs-nrf-sbi:80
 udr:
+  podAnnotations:
+    sidecar.istio.io/inject: "false"
   resources:
     requests:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1000Mi
     limits:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1000Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -211,23 +242,27 @@ udr:
             values:
             - other
   config:
-    logLevel: fatal
+    logLevel: error
     sbi:
+      server:
+        advertise: open5gs-udr-sbi
       client:
         scp:
           enabled: false
           uri: ""
         nrf:
           enabled: true
-          uri: http://open5gs-nrf-sbi:7777
+          uri: http://open5gs-nrf-sbi:80
 nrf:
+  podAnnotations:
+    sidecar.istio.io/inject: "false"
   resources:
     requests:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1000Mi
     limits:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1000Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -238,7 +273,10 @@ nrf:
             values:
             - other
   config:
-    logLevel: fatal
+    logLevel: error
+    sbi:
+      server:
+        advertise: open5gs-nrf-sbi
 upf:
   resources:
     requests:
@@ -257,7 +295,9 @@ upf:
             values:
             - upf
   config:
-    logLevel: fatal
+    logLevel: error
+  podAnnotations:
+    sidecar.istio.io/inject: "false"
 # Disable 4G functions
 hss:
   enabled: false
@@ -271,7 +311,9 @@ sgwu:
   enabled: false
 # Disable webui
 webui:
-  enabled: true
+  enabled: false
+  podAnnotations:
+    sidecar.istio.io/inject: "false"
   ingress:
     enabled: false
   affinity:
@@ -279,24 +321,28 @@ webui:
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms:
         - matchExpressions:
-          - key: kubernetes.io/hostname
+          - key: node
             operator: In
             values:
-            - master
+            - misc
 mongodb:
   enabled: true
+  podAnnotations:
+    sidecar.istio.io/inject: "false"
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms:
         - matchExpressions:
-          - key: kubernetes.io/hostname
+          - key: node
             operator: In
             values:
-            - master
+            - misc
 populate:
-  enabled: true
+  enabled: false
   # NOTE: This configuration does not take effect on populate 
+  #podAnnotations:
+    #sidecar.istio.io/inject: "false"
   #affinity:
     #nodeAffinity:
     #  requiredDuringSchedulingIgnoredDuringExecution:
@@ -306,10 +352,10 @@ populate:
     #        operator: In
     #        values:
     #        - master
-  #initCommands:
-  #- for ue in {1..9}; do open5gs-dbctl add_ue_with_slice "99970000000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
-  #- for ue in {10..99}; do open5gs-dbctl add_ue_with_slice "9997000000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
-  #- for ue in {100..999}; do open5gs-dbctl add_ue_with_slice "999700000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
-  #- open5gs-dbctl add_ue_with_slice "999700000000100" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff
-  #- for ue in {1000..9999}; do open5gs-dbctl add_ue_with_slice "99970000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
-  #- open5gs-dbctl add_ue_with_slice "999700000010000" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff
+  initCommands:
+  - for ue in {1..9}; do open5gs-dbctl add_ue_with_slice "99970000000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
+  - for ue in {10..99}; do open5gs-dbctl add_ue_with_slice "9997000000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
+  - for ue in {100..999}; do open5gs-dbctl add_ue_with_slice "999700000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
+  - open5gs-dbctl add_ue_with_slice "999700000001000" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff
+    #  - for ue in {1000..9999}; do open5gs-dbctl add_ue_with_slice "99970000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
+    #  - open5gs-dbctl add_ue_with_slice "999700000010000" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff

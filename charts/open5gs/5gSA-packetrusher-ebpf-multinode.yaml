@@ -5,11 +5,11 @@ scp:
 smf:
   resources:
     requests:
-      cpu: 1000m
-      memory: 512Mi
+      cpu: 250m
+      memory: 100M
     limits:
-      cpu: 1000m
-      memory: 512Mi
+      cpu: 250m
+      memory: 100M
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -20,6 +20,7 @@ smf:
             values:
             - smf
   config:
+    logLevel: info
     sbi:
       client:
         scp:
@@ -48,6 +49,7 @@ amf:
             values:
             - amf
   config:
+    logLevel: info
     sbi:
       client:
         scp:
@@ -74,6 +76,7 @@ ausf:
             values:
             - other
   config:
+    logLevel: info
     sbi:
       client:
         scp:
@@ -100,6 +103,7 @@ bsf:
             values:
             - other
   config:
+    logLevel: info
     sbi:
       client:
         scp:
@@ -126,6 +130,7 @@ nssf:
             values:
             - other
   config:
+    logLevel: info
     sbi:
       client:
         scp:
@@ -152,6 +157,7 @@ pcf:
             values:
             - other
   config:
+    logLevel: info
     sbi:
       client:
         scp:
@@ -178,6 +184,7 @@ udm:
             values:
             - other
   config:
+    logLevel: info
     sbi:
       client:
         scp:
@@ -204,6 +211,7 @@ udr:
             values:
             - other
   config:
+    logLevel: info
     sbi:
       client:
         scp:
@@ -229,6 +237,8 @@ nrf:
             operator: In
             values:
             - other
+  config:
+    logLevel: info
 upf:
   resources:
     requests:
@@ -246,6 +256,8 @@ upf:
             operator: In
             values:
             - upf
+  config:
+    logLevel: info
 # Disable 4G functions
 hss:
   enabled: false
@@ -259,7 +271,7 @@ sgwu:
   enabled: false
 # Disable webui
 webui:
-  enabled: true
+  enabled: false
   ingress:
     enabled: false
   affinity:
@@ -283,7 +295,7 @@ mongodb:
             values:
             - master
 populate:
-  enabled: true
+  enabled: false
   # NOTE: This configuration does not take effect on populate 
   #affinity:
     #nodeAffinity:
@@ -294,10 +306,10 @@ populate:
     #        operator: In
     #        values:
     #        - master
-  initCommands:
-  - for ue in {1..9}; do open5gs-dbctl add_ue_with_slice "99970000000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
-  - for ue in {10..99}; do open5gs-dbctl add_ue_with_slice "9997000000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
-  - for ue in {100..999}; do open5gs-dbctl add_ue_with_slice "999700000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
-  - open5gs-dbctl add_ue_with_slice "999700000001000" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff
+  #initCommands:
+  #- for ue in {1..9}; do open5gs-dbctl add_ue_with_slice "99970000000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
+  #- for ue in {10..99}; do open5gs-dbctl add_ue_with_slice "9997000000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
+  #- for ue in {100..999}; do open5gs-dbctl add_ue_with_slice "999700000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
+  #- open5gs-dbctl add_ue_with_slice "999700000000100" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff
   #- for ue in {1000..9999}; do open5gs-dbctl add_ue_with_slice "99970000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
   #- open5gs-dbctl add_ue_with_slice "999700000010000" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff

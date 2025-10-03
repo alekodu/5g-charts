@@ -7,11 +7,11 @@ smf:
     sidecar.istio.io/inject: "false"
   resources:
     requests:
-      cpu: 1000m
-      memory: 512Mi
+      cpu: 2
+      memory: 5Gi
     limits:
-      cpu: 1000m
-      memory: 512Mi
+      cpu: 2
+      memory: 5Gi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -20,8 +20,9 @@ smf:
           - key: node
             operator: In
             values:
-            - amf
+            - smf
   config:
+    logLevel: error
     sbi:
       client:
         scp:
@@ -37,11 +38,11 @@ amf:
     sidecar.istio.io/inject: "false"
   resources:
     requests:
-      cpu: 1000m
-      memory: 1024Mi
+      cpu: 2
+      memory: 5Gi
     limits:
-      cpu: 1000m
-      memory: 1024Mi
+      cpu: 2
+      memory: 5Gi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -52,6 +53,7 @@ amf:
             values:
             - amf
   config:
+    logLevel: error
     sbi:
       client:
         scp:
@@ -66,10 +68,10 @@ ausf:
   resources:
     requests:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1000Mi
     limits:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1000Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -80,6 +82,7 @@ ausf:
             values:
             - other
   config:
+    logLevel: error
     sbi:
       client:
         scp:
@@ -94,10 +97,10 @@ bsf:
   resources:
     requests:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1000Mi
     limits:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1000Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -108,6 +111,7 @@ bsf:
             values:
             - other
   config:
+    logLevel: error
     sbi:
       client:
         scp:
@@ -122,10 +126,10 @@ nssf:
   resources:
     requests:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1000Mi
     limits:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1000Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -136,6 +140,7 @@ nssf:
             values:
             - other
   config:
+    logLevel: error
     sbi:
       client:
         scp:
@@ -150,10 +155,10 @@ pcf:
   resources:
     requests:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1000Mi
     limits:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1000Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -164,6 +169,7 @@ pcf:
             values:
             - other
   config:
+    logLevel: error
     sbi:
       client:
         scp:
@@ -178,10 +184,10 @@ udm:
   resources:
     requests:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1000Mi
     limits:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1000Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -192,6 +198,7 @@ udm:
             values:
             - other
   config:
+    logLevel: error
     sbi:
       client:
         scp:
@@ -206,10 +213,10 @@ udr:
   resources:
     requests:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1000Mi
     limits:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1000Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -220,6 +227,7 @@ udr:
             values:
             - other
   config:
+    logLevel: error
     sbi:
       client:
         scp:
@@ -234,10 +242,10 @@ nrf:
   resources:
     requests:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1000Mi
     limits:
       cpu: 1000m
-      memory: 512Mi
+      memory: 1000Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -247,6 +255,8 @@ nrf:
             operator: In
             values:
             - other
+  config:
+    logLevel: error
 upf:
   resources:
     requests:
@@ -264,6 +274,8 @@ upf:
             operator: In
             values:
             - upf
+  config:
+    logLevel: error
   podAnnotations:
     sidecar.istio.io/inject: "false"
 # Disable 4G functions
@@ -279,7 +291,7 @@ sgwu:
   enabled: false
 # Disable webui
 webui:
-  enabled: true
+  enabled: false
   podAnnotations:
     sidecar.istio.io/inject: "false"
   ingress:
@@ -289,10 +301,10 @@ webui:
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms:
         - matchExpressions:
-          - key: kubernetes.io/hostname
+          - key: node
             operator: In
             values:
-            - master
+            - misc
 mongodb:
   enabled: true
   podAnnotations:
@@ -302,12 +314,12 @@ mongodb:
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms:
         - matchExpressions:
-          - key: kubernetes.io/hostname
+          - key: node
             operator: In
             values:
-            - master
+            - misc
 populate:
-  enabled: true
+  enabled: false
   # NOTE: This configuration does not take effect on populate 
   #podAnnotations:
     #sidecar.istio.io/inject: "false"

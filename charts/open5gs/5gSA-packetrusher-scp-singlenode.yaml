@@ -275,10 +275,10 @@ webui:
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms:
         - matchExpressions:
-          - key: kubernetes.io/hostname
+          - key: node
             operator: In
             values:
-            - master
+            - misc
 mongodb:
   enabled: true
   podAnnotations:
@@ -288,12 +288,12 @@ mongodb:
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms:
         - matchExpressions:
-          - key: kubernetes.io/hostname
+          - key: node
             operator: In
             values:
-            - master
+            - misc
 populate:
-  enabled: true
+  enabled: false
   # NOTE: This configuration does not take effect on populate 
   #podAnnotations:
     #sidecar.istio.io/inject: "false"
@@ -302,10 +302,10 @@ populate:
     #  requiredDuringSchedulingIgnoredDuringExecution:
     #    nodeSelectorTerms:
     #    - matchExpressions:
-    #      - key: kubernetes.io/hostname
+    #      - key: node
     #        operator: In
     #        values:
-    #        - master
+    #        - misc
   initCommands:
   - for ue in {1..9}; do open5gs-dbctl add_ue_with_slice "99970000000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done
   - for ue in {10..99}; do open5gs-dbctl add_ue_with_slice "9997000000000${ue}" 491BB1C6E1179AED538028AE7AD525B3 3B7FB099B3A6D16873B33F023B1679E9 internet 1 ffffff; done

@@ -100,7 +100,7 @@ config:
     sst: "01"
     sd: "ffffff"
   logs:
-    level: 5
+    level: 3
 
 ## @param replicaCount Number of open5gs-upf Pods to run (requires ReadWriteMany PVC support)
 ##
@@ -110,7 +110,8 @@ replicaCount: 1
 command: []
 ## @param args Override default container args (useful when using custom images)
 ##
-args: ["multi-ue", "-n", "100", "--ngh", "3000", "--td", "5000"]
+#args: ["multi-ue", "-n", "10", "--ngh", "3000", "--td", "5000"]
+args: ["multi-ue", "-n", "1", "--tr", "0", "--td", "3500"]
 ## @param updateStrategy.type Update strategy - only really applicable for deployments with RWO PVs attached
 ## If replicas = 1, an update can get "stuck", as the previous pod remains attached to the
 ## PV, and the "incoming" pod can never start. Changing the strategy to "Recreate" will
@@ -235,11 +236,11 @@ nodeSelector: {}
 ##
 resources:
   requests:
-    cpu: 1000m
-    memory: 512Mi
+    cpu: 50m
+    memory: 100Mi
   limits:
-    cpu: 1000m
-    memory: 512Mi
+    cpu: 50m
+    memory: 100Mi
 ## Configure Pods Security Context
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
 ## @param podSecurityContext.enabled Enable open5gs-upf pods' Security Context
@@ -327,7 +328,7 @@ lifecycleHooks: {}
 ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
 ##
 podAnnotations: {
-  istio.io/dataplane-mode: none
+  #istio.io/dataplane-mode: none
   #sidecar.istio.io/inject: "false"
 }
 ## @param podLabels Add additional labels to the pod (evaluated as a template)
