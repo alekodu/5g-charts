@@ -23,6 +23,26 @@
                 "logLevel": {
                     "type": "string"
                 }
+            },
+            "sbi": {
+                "type": "object",
+                "properties": {
+                    "server": {
+                    "type": ["null", "object"],
+                    "properties": {
+                        "dev": {
+                        "type": "string"
+                        },
+                        "address": {
+                        "type": "string"
+                        },
+                        "advertise": {
+                        "type": "string"
+                        }
+                    },
+                    "additionalProperties": false
+                    }
+                }
             }
         },
         "containerPorts": {

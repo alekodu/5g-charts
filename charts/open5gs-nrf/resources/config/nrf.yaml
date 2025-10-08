@@ -16,6 +16,10 @@ nrf:
     server:
     - dev: eth0
       port: {{ .Values.containerPorts.sbi }}
+      {{- if .advertise }}
+      advertise: {{ .advertise }}
+      {{- end }}
+      {{- end }}
 
 ################################################################################
 # SBI Server
