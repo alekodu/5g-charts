@@ -1,4 +1,6 @@
 # Disable scp
+global:
+  storageClass: "local-path"
 scp:
   enabled: false
 # set scp configuration in the other functions:
@@ -21,12 +23,17 @@ smf:
             operator: In
             values:
             - smf
+  containerPorts:
+    sbi: 80
+  services:
+    sbi:
+      ports:
+        sbi: 80
   config:
     logLevel: error
+      #    advertise: open5gs-smf-sbi
     sbi:
       server:
-        port: 80
-        advertise: open5gs-smf-sbi
       client:
         scp:
           enabled: false
@@ -55,11 +62,17 @@ amf:
             operator: In
             values:
             - amf
+  containerPorts:
+    sbi: 80
+  services:
+    sbi:
+      ports:
+        sbi: 80
   config:
     logLevel: error
     sbi:
       server:
-        advertise: open5gs-amf-sbi
+      advertise: open5gs-amf-sbi
       client:
         scp:
           enabled: false
@@ -86,18 +99,24 @@ ausf:
             operator: In
             values:
             - other
+  containerPorts:
+    sbi: 80
+  services:
+    sbi:
+      ports:
+        sbi: 80
   config:
     logLevel: error
     sbi:
       server:
-        advertise: open5gs-ausf-sbi
+      advertise: open5gs-ausf-sbi
       client:
         scp:
           enabled: false
           uri: ""
         nrf:
           enabled: true
-          uri: http://open5gs-nrf-sbi:50
+          uri: http://open5gs-nrf-sbi:80
 bsf:
   podAnnotations:
     sidecar.istio.io/inject: "false"
@@ -117,11 +136,17 @@ bsf:
             operator: In
             values:
             - other
+  containerPorts:
+    sbi: 80
+  services:
+    sbi:
+      ports:
+        sbi: 80
   config:
     logLevel: error
     sbi:
       server:
-        advertise: open5gs-bsf-sbi
+      advertise: open5gs-bsf-sbi
       client:
         scp:
           enabled: false
@@ -148,11 +173,17 @@ nssf:
             operator: In
             values:
             - other
+  containerPorts:
+    sbi: 80
+  services:
+    sbi:
+      ports:
+        sbi: 80
   config:
     logLevel: error
     sbi:
       server:
-        advertise: open5gs-nssf-sbi
+      advertise: open5gs-nssf-sbi
       client:
         scp:
           enabled: false
@@ -179,11 +210,17 @@ pcf:
             operator: In
             values:
             - other
+  containerPorts:
+    sbi: 80
+  services:
+    sbi:
+      ports:
+        sbi: 80
   config:
     logLevel: error
     sbi:
       server:
-        advertise: open5gs-pcf-sbi
+      advertise: open5gs-pcf-sbi
       client:
         scp:
           enabled: false
@@ -210,11 +247,17 @@ udm:
             operator: In
             values:
             - other
+  containerPorts:
+    sbi: 80
+  services:
+    sbi:
+      ports:
+        sbi: 80
   config:
     logLevel: error
     sbi:
       server:
-        advertise: open5gs-udm-sbi
+      advertise: open5gs-udm-sbi
       client:
         scp:
           enabled: false
@@ -241,11 +284,17 @@ udr:
             operator: In
             values:
             - other
+  containerPorts:
+    sbi: 80
+  services:
+    sbi:
+      ports:
+        sbi: 80
   config:
     logLevel: error
     sbi:
       server:
-        advertise: open5gs-udr-sbi
+      advertise: open5gs-udr-sbi
       client:
         scp:
           enabled: false
@@ -272,11 +321,17 @@ nrf:
             operator: In
             values:
             - other
+  containerPorts:
+    sbi: 80
+  services:
+    sbi:
+      ports:
+        sbi: 80
   config:
     logLevel: error
     sbi:
       server:
-        advertise: open5gs-nrf-sbi
+      advertise: open5gs-nrf-sbi
 upf:
   resources:
     requests:
@@ -329,6 +384,8 @@ mongodb:
   enabled: true
   podAnnotations:
     sidecar.istio.io/inject: "false"
+  updateStrategy:
+    type: Recreate
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
