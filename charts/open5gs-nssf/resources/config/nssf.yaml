@@ -13,7 +13,7 @@ nssf:
     server:
     - dev: eth0
       port: {{ .Values.containerPorts.sbi }}
-      {- with .Values.config.sbi.server }}
+      {{- with .Values.config.sbi.server }}
       {{- if .advertise }}
       advertise: {{ .advertise }}
       {{- end }}
