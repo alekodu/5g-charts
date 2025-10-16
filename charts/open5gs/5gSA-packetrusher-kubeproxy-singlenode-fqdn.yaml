@@ -9,11 +9,11 @@ smf:
     sidecar.istio.io/inject: "false"
   resources:
     requests:
-      cpu: 25
-      memory: 50Gi
+      cpu: 1000m
+      memory: 1000Mi
     limits:
-      cpu: 25
-      memory: 50Gi
+      cpu: 1000m
+      memory: 1000Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -31,9 +31,9 @@ smf:
         sbi: 80
   config:
     logLevel: error
-      #    advertise: open5gs-smf-sbi
     sbi:
       server:
+        #advertise: open5gs-smf-sbi
       client:
         scp:
           enabled: false
@@ -48,11 +48,11 @@ amf:
     sidecar.istio.io/inject: "false"
   resources:
     requests:
-      cpu: 25
-      memory: 50Gi
+      cpu: 1000m
+      memory: 1000Mi
     limits:
-      cpu: 25
-      memory: 50Gi
+      cpu: 1000m
+      memory: 1000Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -61,7 +61,7 @@ amf:
           - key: node
             operator: In
             values:
-            - amf
+            - other
   containerPorts:
     sbi: 80
   services:
@@ -72,7 +72,7 @@ amf:
     logLevel: error
     sbi:
       server:
-      advertise: open5gs-amf-sbi
+        #advertise: open5gs-amf-sbi
       client:
         scp:
           enabled: false
@@ -109,7 +109,7 @@ ausf:
     logLevel: error
     sbi:
       server:
-      advertise: open5gs-ausf-sbi
+        #advertise: open5gs-ausf-sbi
       client:
         scp:
           enabled: false
@@ -146,7 +146,7 @@ bsf:
     logLevel: error
     sbi:
       server:
-      advertise: open5gs-bsf-sbi
+        #advertise: open5gs-bsf-sbi
       client:
         scp:
           enabled: false
@@ -183,7 +183,7 @@ nssf:
     logLevel: error
     sbi:
       server:
-      advertise: open5gs-nssf-sbi
+        #advertise: open5gs-nssf-sbi
       client:
         scp:
           enabled: false
@@ -220,7 +220,7 @@ pcf:
     logLevel: error
     sbi:
       server:
-      advertise: open5gs-pcf-sbi
+        #advertise: open5gs-pcf-sbi
       client:
         scp:
           enabled: false
@@ -257,7 +257,7 @@ udm:
     logLevel: error
     sbi:
       server:
-      advertise: open5gs-udm-sbi
+        #advertise: open5gs-udm-sbi
       client:
         scp:
           enabled: false
@@ -294,7 +294,7 @@ udr:
     logLevel: error
     sbi:
       server:
-      advertise: open5gs-udr-sbi
+        #advertise: open5gs-udr-sbi
       client:
         scp:
           enabled: false
@@ -331,15 +331,15 @@ nrf:
     logLevel: error
     sbi:
       server:
-      advertise: open5gs-nrf-sbi
+        #advertise: open5gs-nrf-sbi
 upf:
   resources:
     requests:
-      cpu: 4000m
-      memory: 8Gi
+      cpu: 1000m
+      memory: 1000Mi
     limits:
-      cpu: 4000m
-      memory: 8Gi
+      cpu: 1000m
+      memory: 1000Mi
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -348,7 +348,7 @@ upf:
           - key: node
             operator: In
             values:
-            - upf
+            - other
   config:
     logLevel: error
   podAnnotations:
